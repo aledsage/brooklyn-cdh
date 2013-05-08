@@ -1,9 +1,9 @@
 package io.cloudsoft.cloudera.brooklynnodes;
 
 import static brooklyn.util.GroovyJavaMethods.truth;
-import groovy.transform.InheritConstructors;
 
 import java.util.Collection;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
@@ -25,11 +25,25 @@ import com.google.common.base.Throwables;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
 
-@InheritConstructors
 public class StartupGroupImpl extends AbstractEntity implements StartupGroup {
 
     public static final Logger log = LoggerFactory.getLogger(StartupGroupImpl.class);
 
+    public StartupGroupImpl() {
+    }
+
+    public StartupGroupImpl(Map flags) {
+    	super(flags);
+    }
+
+    public StartupGroupImpl(Entity parent) {
+    	super(parent);
+    }
+
+    public StartupGroupImpl(Map flags, Entity parent) {
+    	super(flags, parent);
+    }
+    
     @Override public void start(Collection<? extends Location> locations) { 
         startWithEnough(this, locations, 0, 0.75); 
     }
